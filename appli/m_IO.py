@@ -26,4 +26,13 @@ def __pg_request(query):
         return False
     return data
 
-
+def get_codex_full():
+    return __pg_request(conf.get_conf('queries.conf')['get_codex_full'])
+def get_codex_spe(name):
+    return __pg_request(conf.get_conf('queries.conf')['get_codex_spe'].replace('$like$', name))
+def set_codex(name):
+    __pg_request(conf.get_conf('queries.conf')['set_codex'].replace('$name$', name))
+    return __pg_request(conf.get_conf('queries.conf')['get_codex_spe'].replace('$like$', name))
+def update_codex(codex_id, name):
+    __pg_request(conf.get_conf('queries.conf')['update_codex'].replace('$name$', name).replace('$id$', codex_id))
+    return __pg_request(conf.get_conf('queries.conf')['get_codex_id'].replace('$id$', codex_id))
