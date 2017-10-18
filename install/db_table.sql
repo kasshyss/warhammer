@@ -9,6 +9,7 @@ CREATE TABLE codex(
 CREATE TABLE units(
 	unit_id serial primary key
 	,unit_name VARCHAR(30)
+	,unit_type VARCHAR(12)
 	,unit_codex INT REFERENCES codex(codex_id)
 	,M INTEGER
 	,WS INTEGER
