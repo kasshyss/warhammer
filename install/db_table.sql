@@ -30,7 +30,7 @@ CREATE TABLE abilities(
 -- Codex units
 CREATE TABLE codex_unit(
 	unit_id INT REFERENCES units(unit_id)
-	,codex_id REFERENCES codex(codex_id)
+	,codex_id INT REFERENCES codex(codex_id)
 );
 -- Weapons list
 CREATE TABLE weapons(
@@ -69,6 +69,5 @@ CREATE TABLE unit_list(
 CREATE TABLE unit_stuff(
 	unit_id INT REFERENCES units(unit_id)
 	,weapon_id INT REFERENCES weapons(weapon_id)
-	,list
 	,weapon_quantity INTEGER
 );
