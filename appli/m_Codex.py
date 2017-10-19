@@ -1,16 +1,12 @@
 #!/usr/bin/env python
 
 import m_IO as io
-import os
-
-def cls():
-    os.system('cls' if os.name == 'nt' else 'clear')
 
 # Codex fonctions
 
 # Main menu
 def codex():
-    cls()
+    io.cls()
     print '**************************'
     print '**   Codex Management   **'
     print '**************************'
@@ -27,7 +23,7 @@ def print_codex(row):
     print str(row[0]) + ' | ' + str(row[1])
 
 def print_codex_tuple(tuples_codex):
-    cls()
+    io.cls()
     print '**************************'
     print '*      Codex list        *'
     print '**************************'

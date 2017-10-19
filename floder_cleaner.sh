@@ -1,0 +1,3 @@
+
+
+rm appli/*.pyc

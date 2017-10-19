@@ -3,6 +3,11 @@
 import m_log as log
 import psycopg2 as pg
 import m_conf as conf
+import os
+
+# Clean console
+def cls():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 #run a sql query in postgres
 #return the result
