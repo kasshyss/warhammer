@@ -31,6 +31,7 @@ def __pg_request(query):
         return False
     return data
 
+# Codex fonc
 def get_codex_full():
     return __pg_request(conf.get_conf('queries.conf')['get_codex_full'])
 def get_codex_spe(name):
@@ -41,3 +42,15 @@ def set_codex(name):
 def update_codex(codex_id, name):
     __pg_request(conf.get_conf('queries.conf')['update_codex'].replace('$name$', name).replace('$id$', codex_id))
     return __pg_request(conf.get_conf('queries.conf')['get_codex_id'].replace('$id$', codex_id))
+
+# Weapon fonct
+def get_weapon_full():
+    return __pg_request(conf.get_conf('queries.conf')['get_weapon_full'])
+def get_weapon_ids(ids): #ids = id1,id2,id3
+    return __pg_request(conf.get_conf('queries.conf')['get_weapon_ids'].replace('$id$', ids))
+def get_weapon_spe(name):
+    return __pg_request(conf.get_conf('queries.conf')['get_weapon_like'].replace('$name$', name))
+def set_weapon(data): # data is a dico
+    __pg_request(conf.get_conf('queries.conf')['set_weapon'].replace('$name$', data['name']).replace('$range$', data['range']).replace('$type$',data['type']).replace('$S$', data['S']).replace('$AP$', data['AP']).replace('$D$',data['D']).replace('$abilities$', data['abilities']).replace('$cost$', data['cost']) )
+    return __pg_request(conf.get_conf('queries.conf')['get_weapon_like'].replace('$name$', data['name']))
+
