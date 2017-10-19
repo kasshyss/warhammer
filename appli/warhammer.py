@@ -9,6 +9,7 @@ sys.setdefaultencoding('utf-8')
 import m_IO as io
 import m_Codex as codex
 import m_weapon as weapon
+import m_unit as unit
 
 def index():
     io.cls()
@@ -47,7 +48,7 @@ while run_status:
         l_unit_weapon = library_change()
         
         if l_unit_weapon == '1':
-            raw_input('TBD Unit use case')
+            unit.unit_main()
         elif l_unit_weapon == '2':
             weapon.weapon_main()
         else:
