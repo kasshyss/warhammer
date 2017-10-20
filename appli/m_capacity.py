@@ -21,12 +21,12 @@ def print_capacity(capacity):
 
 def print_capacities(caps):
     sep = ' | '
-    print io.add_sapce('',67).replace(' ', '*')
-    print '* ' + io.add_space('ID', 3) + sep + io.add_space('Name',20) + sep + io.add_space('Description', 40)
-    print io.add_sapce('',67).replace(' ', '*')
+    print io.add_space('',73).replace(' ', '*')
+    print '* ' + io.add_space('ID', 3) + sep + io.add_space('Name',20) + sep + io.add_space('Description', 40) + ' *'
+    print io.add_space('',73).replace(' ', '*')
     for c in caps:
         print_capacity(c)
-    print io.add_sapce('',67).replace(' ', '*')
+    print io.add_space('',73).replace(' ', '*')
 
 def add_capacity():
     c_fields = [['name','What is the ability name ? '],['desc','Please enter a full description : ']]
@@ -56,6 +56,6 @@ def action_capacity():
         raw_input('Bad entry noob')
         return True
 
-def capacity_main()
+def capacity_main():
     while action_capacity():
         True

@@ -40,7 +40,7 @@ def print_weapons(weapons):
     print '********************************************************************************************************'
     print '* '+add_space('ID', 3)+' | '+add_space('Weapon name',20)+' | '+add_space('Type', 15)+' | '+add_space('Range',4)+' | '+'  S |  AP |   D | Cost | '+add_space('Comment', 20)+' *'
     print '* ____________________________________________________________________________________________________ *'
-    for weapon in io.get_weapon_full():
+    for weapon in weapons:
         print_weapon(weapon)
     print '********************************************************************************************************\n'
 # Add weapon

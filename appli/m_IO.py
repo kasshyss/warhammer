@@ -14,7 +14,7 @@ def add_space(item, size):
     item = str(item)
     if item_len >= size:
         return item
-    for i in range(size - i_len):
+    for i in range(size - item_len):
         item = ' ' + item
     return item
 
@@ -70,6 +70,8 @@ def get_unit_ids(ids): #ids = id1,id2,id3 etc....
     return __pg_request(conf.get_conf('queries.conf')['get_unit_ids'].replace('$ids$',ids))
 def get_unit_weapon(unit_id):
     return __pg_request(conf.get_conf('queries.conf')['get_unit_weapon'].replace('$uid$',unit_id))
+def get_unit_capacities(unit_id):
+    return __pg_request(conf.get_conf('queries.conf')['get_unit_capacities'].replace('$id$',unit_id))
 
 # capacity
 def get_capacities():
@@ -78,5 +80,5 @@ def get_capacity_name(name):
     return __pg_request(conf.get_conf('queries.conf')['get_ability_spe'].replace('$name$', name))
 def set_capacity(c_data):
     __pg_request(conf.get_conf('queries.conf')['set_ability'].replace('$name$', c_data['name']).replace('$description$', c_data['desc']))
-    return __pg_request(conf.get_conf('queries.conf')['get_ability_spe'].replace('$name$',c_date['name']))
+    return __pg_request(conf.get_conf('queries.conf')['get_ability_spe'].replace('$name$',c_data['name']))
     
