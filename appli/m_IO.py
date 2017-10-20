@@ -9,6 +9,15 @@ import os
 def cls():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+def add_space(item, size):
+    item_len = len(str(item))
+    item = str(item)
+    if item_len >= size:
+        return item
+    for i in range(size - i_len):
+        item = ' ' + item
+    return item
+
 #run a sql query in postgres
 #return the result
 #use config to connect to the rigth DB
@@ -54,3 +63,20 @@ def set_weapon(data): # data is a dico
     __pg_request(conf.get_conf('queries.conf')['set_weapon'].replace('$name$', data['name']).replace('$range$', data['range']).replace('$type$',data['type']).replace('$S$', data['S']).replace('$AP$', data['AP']).replace('$D$',data['D']).replace('$abilities$', data['abilities']).replace('$cost$', data['cost']) )
     return __pg_request(conf.get_conf('queries.conf')['get_weapon_like'].replace('$name$', data['name']))
 
+# Unit fonction
+def get_unit_full():
+    return __pg_request(conf.get_conf('queries.conf')['get_unit_full'])
+def get_unit_ids(ids): #ids = id1,id2,id3 etc....
+    return __pg_request(conf.get_conf('queries.conf')['get_unit_ids'].replace('$ids$',ids))
+def get_unit_weapon(unit_id):
+    return __pg_request(conf.get_conf('queries.conf')['get_unit_weapon'].replace('$uid$',unit_id))
+
+# capacity
+def get_capacities():
+    return __pg_request(conf.get_conf('queries.conf')['get_abilities'])
+def get_capacity_name(name):
+    return __pg_request(conf.get_conf('queries.conf')['get_ability_spe'].replace('$name$', name))
+def set_capacity(c_data):
+    __pg_request(conf.get_conf('queries.conf')['set_ability'].replace('$name$', c_data['name']).replace('$description$', c_data['desc']))
+    return __pg_request(conf.get_conf('queries.conf')['get_ability_spe'].replace('$name$',c_date['name']))
+    
