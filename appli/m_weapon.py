@@ -51,6 +51,9 @@ def add_weapon():
             w_data[field[0]] = raw_input(field[1])
         return io.set_weapon(w_data)
 
+def weapon():
+    return print_weapons(io.get_weapon_full())
+
 # Actions
 def weapon_action():
     action = weapon_menu()

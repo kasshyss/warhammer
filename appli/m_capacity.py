@@ -17,12 +17,12 @@ def capacity_menu():
 
 def print_capacity(capacity):
     sep = ' | '
-    print '* ' + io.add_space(capacity[0], 3) + sep + io.add_space(capacity[1], 20) + sep + io.add_space(capacity[2], 40) + ' *'
+    print '* ' + io.add_space(capacity[0], 3) + sep + io.add_space(capacity[1], 20) + sep + io.add_space(capacity[2], 80) + ' *'
 
 def print_capacities(caps):
     sep = ' | '
     print io.add_space('',73).replace(' ', '*')
-    print '* ' + io.add_space('ID', 3) + sep + io.add_space('Name',20) + sep + io.add_space('Description', 40) + ' *'
+    print '* ' + io.add_space('ID', 3) + sep + io.add_space('Name',20) + sep + io.add_space('Description', 80) + ' *'
     print io.add_space('',73).replace(' ', '*')
     for c in caps:
         print_capacity(c)

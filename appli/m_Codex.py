@@ -30,8 +30,11 @@ def print_codex_tuple(tuples_codex):
     for codex in tuples_codex:
         print_codex(codex)
     print '**************************'
-    raw_input('Continue ...')
     return True
+
+def codex():
+    return print_codex_tuple(io.get_codex_full())
+
 
 def codex_main():
     c = codex()

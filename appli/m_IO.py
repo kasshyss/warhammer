@@ -72,6 +72,9 @@ def get_unit_weapon(unit_id):
     return __pg_request(conf.get_conf('queries.conf')['get_unit_weapon'].replace('$uid$',unit_id))
 def get_unit_capacities(unit_id):
     return __pg_request(conf.get_conf('queries.conf')['get_unit_capacities'].replace('$id$',unit_id))
+def set_unit(d): # d is a dico
+    __pg_request(conf.get_conf('queries.conf')['set_unit'].replace('$name$', d['name']).replace('$type$', d['type']).replace('$codex$', d['codex']).replace('$M$', d['m']).replace('$WS$', d['ws']).replace('$BS$', d['bs']).replace('$S$', d['s']).replace('$T$', d['t']).replace('$A$', d['a']).replace('$Ld$', d['ld']).replace('$Sg$', d['sg']).replace('$point$', d['point']).replace('$power$', d['power']))
+    return __pg_request(conf.get_conf('queries.conf')['get_unit_name'].replace('$name$',d['name']))
 
 # capacity
 def get_capacities():
@@ -81,4 +84,11 @@ def get_capacity_name(name):
 def set_capacity(c_data):
     __pg_request(conf.get_conf('queries.conf')['set_ability'].replace('$name$', c_data['name']).replace('$description$', c_data['desc']))
     return __pg_request(conf.get_conf('queries.conf')['get_ability_spe'].replace('$name$',c_data['name']))
-    
+def get_unit_capacities(unit_id):
+    return __pg_request(conf.get_conf('queries.conf')['get_unit_capacities'].replace('$id$',unit_id))
+
+def set_unit_weapon(unit_id, weapon_id):
+    __pg_request(conf.get_conf('queries.conf')['set_unit_weapon'].replace('$unit$', unit_id).replace('$weapon$', weapon_id))
+def set_unit_capacity(unit_id, capa_id):
+    __pg_request(conf.get_conf('queries.conf')['set_unit_ability'].replace('$unit$', unit_id).replace('$ability$', capa_id))
+

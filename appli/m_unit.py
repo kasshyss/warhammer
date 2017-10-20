@@ -9,6 +9,7 @@
 import m_IO as io
 import m_weapon as weapon
 import m_capacity as capa
+import m_Codex as codex
 
 def unit_menu():
     io.cls()
@@ -18,7 +19,7 @@ def unit_menu():
     print '1   : Check unit list'
     print '2   : Check one unit'
     print '3   : Add a new unit'
-    print '4   : Add a new capacity'
+    print '4   : Capacity menu'
     print '5   : Link capacity and unit'
     print '6   : Link weapon and unit'
     print '7   : Update an unit'
@@ -40,13 +41,88 @@ def print_units(units):
         print_unit(unit)
     print star
 
+def unit_weapon_menu(unit_id):
+    io.cls()
+    print '***************'
+    print '* unit/weapon *'
+    print '***************'
+    print '1   : link     '
+    print '2 : : add&link'
+    print 'OUT : next step'
+    print '***************\n'
+    print_units(io.get_unit_ids(str(unit_id)))
+    print '\n'
+    weapon.print_weapons(io.get_unit_weapon(str(unit_id)))
+    return raw_input('\nWhat do you do Sir ? ')
+
+def unit_capacity_menu(unit_id):
+    io.cls()
+    print '***************'
+    print '* unit/ability *'
+    print '***************'
+    print '1   : link     '
+    print '2 : : add&link'
+    print 'OUT : next step'
+    print '***************\n'
+    print_units(io.get_unit_ids(str(unit_id)))
+    print '\n'
+    capa.print_capacities(io.get_unit_capacities(str(unit_id)))
+    return raw_input('\nWhat do you do Sir ? ')
+
+def unit_weapon_action(unit_id):
+    action = unit_weapon_menu(unit_id)
+    if action.upper() == 'OUT':
+        return False
+    elif action == '1':
+        io.set_unit_weapon(str(unit_id), raw_input('Weapon ID : '))
+        return True
+    elif action == '2':
+        weapon.print_weapons(weapon.add_weapon())
+        io.set_unit_weapon(str(unit_id), raw_input('Weapon ID : '))
+        return True
+    else:
+        raw_input('Wrong input noob ...')
+        return True
+
+def unit_capacity_action(unit_id):
+    action = unit_capacity_menu(unit_id)
+    if action.upper() == 'OUT':
+        return False
+    elif action == '1':
+        io.set_unit_capacity(unit_id, raw_input('Ability ID : '))
+        return True
+    elif action == '2':
+        capa.print_capacities(capa.add_capacity())
+        io.set_unit_capacity(unit_id, raw_input('Ability ID : '))
+        return True
+    else:
+        raw_input('Wrong input noob ...')
+        return True
+
+def unit_weapon(unit_id):
+    while unit_weapon_action(unit_id):
+        True
+
+def unit_capacity(unit_id):
+    while unit_capacity_action(str(unit_id)):
+        True
+
 # step 1 creat unit
 # 2 add abilities
 # 3 add weapons
 def add_unit():
     # TODO conf file
-    unit_field = [['name','What is the unit name (str 30) ? '],['type','What is the unit category (str 12) ? '],['codex','What is the codex id (int) ? '],['m','What is the unit mouvement (int) ? '],['ws','What is the unit weapon skill WS (int) ? '],['bs','What is the unit battel skill BS (int) ? '],['s','What is the unit strength ? '],['t','What is the unit toughness ? '],['a','How many attacks ? '],['ld ','What is the unit leadership ? '],['sg','What is the unit base savgarde ? '],['point','How many cost this unit in point ? '], ['power','How many cost this unit in point']]
-    # TODO Query insert
+    unit_field = [['name','What is the unit name (str 30) ? '],['type','What is the unit category (str 12) ? '],['codex','What is the codex id (int) ? '],['m','What is the unit mouvement (int) ? '],['ws','What is the unit weapon skill WS (int) ? '],['bs','What is the unit battel skill BS (int) ? '],['s','What is the unit strength ? '],['t','What is the unit toughness ? '],['a','How many attacks ? '],['ld','What is the unit leadership ? '],['sg','What is the unit base savgarde ? '],['point','How many cost this unit in point ? '], ['power','How many cost this unit in power ? ']]
+    u_data={}
+    codex.codex()
+    for field in unit_field:
+        u_data[field[0]] = raw_input(field[1])
+    unit_id = io.set_unit(u_data)[0][0]
+    raw_input('\nUnit add, now link unit and weapon   ' + str(unit_id))
+    io.cls()
+    unit_weapon(unit_id)
+    raw_input('all weapons added, now add abilities')
+    unit_capacity(unit_id)
 
 # Actions
 def unit_action():
