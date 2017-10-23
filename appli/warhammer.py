@@ -30,7 +30,7 @@ def data_management():
     print '**             Add or remove item or unit                **'
     print '***********************************************************'
     print '   Options :'
-    print '    * 1 : Squad'
+    print '    * 1 : Squad and unit'
     print '    * 2 : Weapon'
     print '    * 3 : Codex'
     print '    * 4 : Abilities'
