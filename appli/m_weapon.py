@@ -1,13 +1,8 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
-# Weapon managment use case
-# Check full list
-# Check like list
-# Add new weapon
-# Update a weapon
-
 import m_IO as io
+import m_conf as conf
 
 def weapon_menu():
     io.cls()
@@ -17,40 +12,39 @@ def weapon_menu():
     print '1   : Check weapon list'
     print '2   : Check one weapon'
     print '3   : Add a new weapon'
-    print '4   : Update a weapon'
     print 'OUT : Back to the main menu'
     print '***************************'
     return raw_input('What is your choice : ')
 
-# Add space before a string
-def add_space(item, size):
-    i_len = len(str(item))
-    item = str(item)
-    if i_len >= size:
-        return item
-    for i in range(size - i_len):
-        item = ' ' + item
-    return item
-
 # Print item
 def print_weapon(weapon):
-    print '* ' + add_space(weapon[0], 3) + ' | ' + add_space(weapon[1], 20) + ' | ' + add_space(weapon[3], 15) + ' | ' + add_space(str(weapon[2]), 5) + ' | ' + add_space(str(weapon[4]), 3) + ' | ' + add_space(weapon[5], 3) + ' | ' + add_space(weapon[6], 3) +' | '+ add_space(weapon[8], 4) + ' | ' + add_space(weapon[7], 20) + ' *'
-# Print list
+    sep = ' | '
+    w = '* '
+    for field in conf.get_conf('weapon.conf')['fields_size'].split(','):
+	w = w + io.add_space(weapon[int(field.split(':')[2])], int(field.split(':')[1])) + sep
+    print w[:-3:] + '*'
+
+# Print list of items
 def print_weapons(weapons):
-    print '********************************************************************************************************'
-    print '* '+add_space('ID', 3)+' | '+add_space('Weapon name',20)+' | '+add_space('Type', 15)+' | '+add_space('Range',4)+' | '+'  S |  AP |   D | Cost | '+add_space('Comment', 20)+' *'
-    print '* ____________________________________________________________________________________________________ *'
+    sep = ' | '
+    sep_line = io.add_space('', 104).replace(' ', '*')
+    header = '* '
+    for field in conf.get_conf('weapon.conf')['fields_size'].split(','):
+        header = header + io.add_space(field.split(':')[0], int(field.split(':')[1])) + sep
+    header = header[:-2:] + '*'
+    print sep_line
+    print header
+    print sep_line
     for weapon in weapons:
         print_weapon(weapon)
-    print '********************************************************************************************************\n'
+    print sep_line
 # Add weapon
 def add_weapon():
-        weapon_fields =[['name','Weapon name (30) : '], ['range','Weapon range (int) '], ['type','Weapon type (15) : '], ['S', 'Weapon Strength (int) : '], ['AP', 'Armor pen (3) : '], ['D','Damage (4) : '], ['abilities','Comment (75) : '], ['cost', 'Cost in point (int) : ']]
         w_data={}
-        for field in weapon_fields:
-            w_data[field[0]] = raw_input(field[1])
+        for field in conf.get_conf('weapon.conf')['get_fields'].split(','):
+	    w_data[field.split(':')[0]] = raw_input(field.split(':')[1].replace("'",'') + ' : ')
         return io.set_weapon(w_data)
-
+# Return weapon full list 
 def weapon():
     return print_weapons(io.get_weapon_full())
 
@@ -70,9 +64,6 @@ def weapon_action():
     elif action == '3':
         print_weapons(add_weapon())
         raw_input('Continue ...')
-        return True
-    elif action == '4':
-        raw_input('TBD update weapon')
         return True
     else:
         raw_input('Action not allowed :(')
