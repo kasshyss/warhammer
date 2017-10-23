@@ -72,7 +72,7 @@ CREATE TABLE units(
 
 -- Special abilities of a unit = allowed abilities
 CREATE TABLE squad_ability(
-	squad_id INT REFERENCES squad(squad_id)
+	squad_id INT REFERENCES squads(squad_id)
 	,ability_id INT REFERENCES abilities(ability_id)
 );
 -- Weapons available for a unit
@@ -85,7 +85,7 @@ CREATE TABLE unit_weapon(
 CREATE TABLE unit_list(
 	unit_list_id serial primary key
 	,list_id INT REFERENCES army_list(list_id)
-	,squad_id INT REFERENCES squad(squad_id)
+	,squad_id INT REFERENCES squads(squad_id)
 	,squad_size INTEGER
 );
 
