@@ -9,7 +9,7 @@
 import m_IO as io
 import m_weapon as weapon
 import m_capacity as capa
-import m_Codex as codex
+import m_codex as codex
 
 def unit_menu():
     io.cls()

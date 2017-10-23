@@ -51,6 +51,10 @@ def set_codex(name):
 def update_codex(codex_id, name):
     __pg_request(conf.get_conf('queries.conf')['update_codex'].replace('$name$', name).replace('$id$', codex_id))
     return __pg_request(conf.get_conf('queries.conf')['get_codex_id'].replace('$id$', codex_id))
+def get_codex_id(c_id):
+    return __pg_request(conf.get_conf('queries.conf')['get_codex_id'].replace('$id$', c_id))
+
+
 
 # Weapon fonct
 def get_weapon_full():

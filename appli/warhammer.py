@@ -7,7 +7,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 import m_IO as io
-import m_Codex as codex
+import m_codex as codex
 import m_weapon as weapon
 import m_unit as unit
 
@@ -17,40 +17,44 @@ def index():
     print '**           Warhammer 40k Army list manager             **'
     print '***********************************************************'
     print '   Options : '
-    print '    * 1 : Add or Update units and weapon definition'
+    print '    * 1 : Data management'
     print '    * 2 : Army list management'
-    print '    * 3 : Display data'
-    print '    * 4 : Codex'
     print '   Other : '
     print '    * OUT : program end'
     print '***********************************************************'
-    return raw_input('')
+    return raw_input('Enter your choice : ')
 
-def library_change():
+def data_management():
     print ('\n')
     print '***********************************************************'
     print '**             Add or remove item or unit                **'
     print '***********************************************************'
     print '   Options :'
-    print '    * 1 : Unit'
+    print '    * 1 : Squad'
     print '    * 2 : Weapon'
+    print '    * 3 : Codex'
+    print '    * 4 : Abilities'
     print '   Other : '
     print '    * OUT : Menu out'
     print '***********************************************************'
-    return raw_input('')
+    return raw_input('Enter your choice : ')
 
 run_status = True
 
 while run_status:
-    loop_option_status = True
     option_index = index()
     if option_index == '1':
-        l_unit_weapon = library_change()
-        
-        if l_unit_weapon == '1':
+        l_unit_weapon = data_management()
+	if l_unit_weapon.upper() == 'OUT':
+	    raw_input('Back to main menu ...')        
+	elif l_unit_weapon == '1':
             unit.unit_main()
         elif l_unit_weapon == '2':
             weapon.weapon_main()
+	elif l_unit_weapon == '3':
+	     codex.codex_main()
+	elif l_unit_weapon == '4':
+	     print 'TODO'
         else:
             raw_input('Wrong option ...')
 
@@ -59,12 +63,6 @@ while run_status:
     elif option_index.upper() == 'OUT':
         print 'Bye bye !'
         run_status = False
-    elif option_index == '3':
-        print 'TBD display'
-    # Codex use case
-    elif option_index == '4':
-	codex.codex_loop()
-        
     else:
-        print 'Bad option'
+        raw_input('Bad option ... 1 OR 2 noob.')
 
