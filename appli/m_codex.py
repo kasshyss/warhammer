@@ -40,9 +40,9 @@ def print_codex(codex):
 
 def add_codex():
     io.cls()
-    print '**************************************'
-    print '*    Current codex List a codex      *'
-    print '**************************************'
+    print '****************************'
+    print '*    Current codex list    *'
+    print '****************************'
     print_codex(io.get_codex_full())
     print '***********************'
     print '*    Add a codex      *'

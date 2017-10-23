@@ -77,7 +77,7 @@ def get_unit_weapon(unit_id):
 def get_unit_capacities(unit_id):
     return __pg_request(conf.get_conf('queries.conf')['get_unit_capacities'].replace('$id$',unit_id))
 def set_unit(d): # d is a dico
-    __pg_request(conf.get_conf('queries.conf')['set_unit'].replace('$name$', d['name']).replace('$type$', d['type']).replace('$codex$', d['codex']).replace('$M$', d['m']).replace('$WS$', d['ws']).replace('$BS$', d['bs']).replace('$S$', d['s']).replace('$T$', d['t']).replace('$A$', d['a']).replace('$Ld$', d['ld']).replace('$Sg$', d['sg']).replace('$point$', d['point']).replace('$power$', d['power']))
+    __pg_request(conf.get_conf('queries.conf')['set_unit'].replace('$name$', d['name']).replace('$type$', d['type']).replace('$codex$', d['codex']).replace('$M$', d['m']).replace('$WS$', d['ws']).replace('$BS$', d['bs']).replace('$S$', d['s']).replace('$T$', d['t']).replace('$A$', d['a']).replace('$Ld$', d['ld']).replace('$Sg$', d['sg']).replace('$point$', d['point']).replace('$power$', d['power']).replace('$W$', d['w']))
     return __pg_request(conf.get_conf('queries.conf')['get_unit_name'].replace('$name$',d['name']))
 
 # capacity
@@ -95,4 +95,10 @@ def set_unit_weapon(unit_id, weapon_id):
     __pg_request(conf.get_conf('queries.conf')['set_unit_weapon'].replace('$unit$', unit_id).replace('$weapon$', weapon_id))
 def set_unit_capacity(unit_id, capa_id):
     __pg_request(conf.get_conf('queries.conf')['set_unit_ability'].replace('$unit$', unit_id).replace('$ability$', capa_id))
+# Unit type requests
+def get_unit_type():
+    return __pg_request(conf.get_conf('queries.conf')['get_unit_types'])
+def set_unit_type(name):
+    __pg_request(conf.get_conf('queries.conf')['set_unit_types'].replace('$name$',name))
+    return __pg_request(conf.get_conf('queries.conf')['get_unit_types'])
 

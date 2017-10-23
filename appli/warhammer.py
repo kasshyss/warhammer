@@ -10,6 +10,7 @@ import m_IO as io
 import m_codex as codex
 import m_weapon as weapon
 import m_unit as unit
+import m_unit_type as u_type
 
 def index():
     io.cls()
@@ -34,6 +35,7 @@ def data_management():
     print '    * 2 : Weapon'
     print '    * 3 : Codex'
     print '    * 4 : Abilities'
+    print '    * 5 : Unit types'
     print '   Other : '
     print '    * OUT : Menu out'
     print '***********************************************************'
@@ -55,6 +57,8 @@ while run_status:
 	     codex.codex_main()
 	elif l_unit_weapon == '4':
 	     print 'TODO'
+	elif l_unit_weapon == '5':
+	     print u_type.u_type_main()
         else:
             raw_input('Wrong option ...')
 

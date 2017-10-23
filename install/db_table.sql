@@ -30,8 +30,6 @@ CREATE TABLE army_list(
 -- Squad is compsed by one or many units
 CREATE TABLE squads(
 	squad_id serial primary key
-	,squad_type INT REFERENCES ref_unit_type(unit_type_id)
-	,squad_codex INT REFERENCES ref_codex(codex_id)
 	,squad_name VARCHAR(30)
 );
 -- Abilities of every units
@@ -57,6 +55,8 @@ CREATE TABLE units(
 	unit_id serial primary key
 	,unit_name VARCHAR(30)
 	,squad_id INT REFERENCES squads(squad_id)
+	,unit_type INT REFERENCES ref_unit_type(unit_type_id)
+	,unit_codex INT REFERENCES ref_codex(codex_id)
 	,M INTEGER
 	,WS INTEGER
 	,BS INTEGER
