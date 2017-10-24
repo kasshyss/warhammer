@@ -51,7 +51,7 @@ def action_capacity():
         return True
     elif action == '3':
         print_capacities(io.get_capacities())
-        raw_input('Not to long ? press enter to continue ...')
+        raw_input('Not to long ?')
         return True
     else:
         raw_input('Bad entry noob')
