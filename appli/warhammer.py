@@ -11,6 +11,7 @@ import m_codex as codex
 import m_weapon as weapon
 import m_unit as unit
 import m_unit_type as u_type
+import m_capacity as capacity
 
 def index():
     io.cls()
@@ -56,7 +57,7 @@ while run_status:
 	elif l_unit_weapon == '3':
 	     codex.codex_main()
 	elif l_unit_weapon == '4':
-	     print 'TODO'
+	     capacity.capacity_main()
 	elif l_unit_weapon == '5':
 	     print u_type.u_type_main()
         else:

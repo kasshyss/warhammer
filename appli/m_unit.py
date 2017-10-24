@@ -10,6 +10,9 @@ import m_IO as io
 import m_weapon as weapon
 import m_capacity as capa
 import m_codex as codex
+import m_squad as squad
+import m_conf as conf
+import m_unit_type as ut
 
 def unit_menu():
     io.cls()
@@ -22,20 +25,26 @@ def unit_menu():
     print '4   : Capacity menu'
     print '5   : Link capacity and unit'
     print '6   : Link weapon and unit'
-    print '7   : Update an unit'
     print 'OUT : Back to the main menu'
     print '***************************'
     return raw_input('What is your choice : ')
 
 def print_unit(unit):
     sep = ' | '
-    print '* ' + io.add_space(unit[0],3) +sep+ io.add_space(unit[1], 30) +sep+ io.add_space(unit[2], 12) +sep+ io.add_space(unit[3], 20) +sep+ io.add_space(unit[4],2) +sep+ io.add_space(unit[5], 2) +sep+ io.add_space(unit[6], 2) +sep+ io.add_space(unit[7], 2) +sep+ io.add_space(unit[8], 2) +sep+ io.add_space(unit[9],2) +sep+ io.add_space(unit[10], 2) +sep+ io.add_space(unit[11],2) +sep+ io.add_space(unit[12], 5) +sep+ io.add_space(unit[13], 4)  +' *'
+    u = '* '
+    for field in conf.get_conf('unit.conf')['unit_display'].split(','):
+	u = u + io.add_space(unit[int(field.split(':')[2])], int(field.split(':')[1])) + sep
+    print u[:-2:] + '*'
 
 def print_units(units):
     sep = ' | '
-    star = io.add_space('',134).replace(' ', '*')
+    star = io.add_space('',139).replace(' ', '*')
+    header =  '* '
+    for field in conf.get_conf('unit.conf')['unit_display'].split(','):
+	header = header + io.add_space(field.split(':')[0], int(field.split(':')[1])) + sep
+    header = header[:-2:] + '*'
     print star
-    print '* ' + ' ID' +sep+ io.add_space('Unit name', 30) +sep+ io.add_space('Type', 12) +sep+ io.add_space('Codex',20) +sep+ ' M' +sep+ 'WS' +sep+ 'BS' +sep+ ' S' +sep+ ' T' +sep+ ' A' +sep+ 'Ld' +sep+ 'Sg' +sep+ 'Point' +sep+ 'Power'  + ' *'
+    print header
     print star
     for unit in units:
         print_unit(unit)
@@ -111,12 +120,13 @@ def unit_capacity(unit_id):
 # 2 add abilities
 # 3 add weapons
 def add_unit():
-    # TODO conf file
-    unit_field = [['name','What is the unit name (str 30) ? '],['type','What is the unit category (str 12) ? '],['codex','What is the codex id (int) ? '],['m','What is the unit mouvement (int) ? '],['ws','What is the unit weapon skill WS (int) ? '],['bs','What is the unit battel skill BS (int) ? '],['s','What is the unit strength ? '],['t','What is the unit toughness ? '],['a','How many attacks ? '],['ld','What is the unit leadership ? '],['sg','What is the unit base savgarde ? '],['point','How many cost this unit in point ? '], ['power','How many cost this unit in power ? ']]
     u_data={}
-    codex.codex()
-    for field in unit_field:
-        u_data[field[0]] = raw_input(field[1])
+    for field in conf.get_conf('unit.conf')['unit_fields'].split(','):
+	if field.split(':')[0] == 'codex':
+	    codex.codex()
+	if field.split(':')[0] == 'type':
+	    ut.unit_type()
+        u_data[field.split(':')[0]] = raw_input(field.split(':')[1] + ' ')
     unit_id = io.set_unit(u_data)[0][0]
     raw_input('\nUnit add, now link unit and weapon   ' + str(unit_id))
     io.cls()
@@ -153,9 +163,6 @@ def unit_action():
         return True
     elif action == '6':
         raw_input('TBD  weapon  => unit...')
-        return True
-    elif action == '7':
-        raw_input('TBD  updates...')
         return True
     else:
         raw_input('Action not allowed :(')

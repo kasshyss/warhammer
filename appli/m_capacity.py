@@ -21,12 +21,13 @@ def print_capacity(capacity):
 
 def print_capacities(caps):
     sep = ' | '
-    print io.add_space('',73).replace(' ', '*')
+    sep_line = io.add_space('',113).replace(' ', '*')
+    print sep_line
     print '* ' + io.add_space('ID', 3) + sep + io.add_space('Name',20) + sep + io.add_space('Description', 80) + ' *'
-    print io.add_space('',73).replace(' ', '*')
+    print sep_line
     for c in caps:
         print_capacity(c)
-    print io.add_space('',73).replace(' ', '*')
+    print sep_line
 
 def add_capacity():
     c_fields = [['name','What is the ability name ? '],['desc','Please enter a full description : ']]
