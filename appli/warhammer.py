@@ -13,6 +13,7 @@ import m_unit as unit
 import m_unit_type as u_type
 import m_capacity as capacity
 import m_squad as squad
+import m_list as l
 
 def index():
     io.cls()
@@ -65,7 +66,7 @@ while run_status:
             raw_input('Wrong option ...')
 
     elif option_index == '2':
-        print 'TBD : list management'
+        l.list_main()
     elif option_index.upper() == 'OUT':
         print 'Bye bye !'
         run_status = False

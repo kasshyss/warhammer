@@ -26,6 +26,7 @@ CREATE TABLE ref_codex(
 CREATE TABLE army_list(
 	list_id serial primary key
 	,list_name VARCHAR(30)
+	,codex_id INT REFERENCES ref_codex(codex_id)
 );
 -- Squad is compsed by one or many units
 CREATE TABLE squads(
@@ -95,5 +96,3 @@ CREATE TABLE unit_stuff(
 	,weapon_id INT REFERENCES weapons(weapon_id)
 	,weapon_quantity INTEGER
 ); 
-
-
