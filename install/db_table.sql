@@ -31,6 +31,8 @@ CREATE TABLE army_list(
 CREATE TABLE squads(
 	squad_id serial primary key
 	,squad_name VARCHAR(30)
+	,size_min INTEGER
+	,size_max INTEGER
 );
 -- Abilities of every units
 CREATE TABLE abilities(
@@ -72,7 +74,7 @@ CREATE TABLE units(
 
 -- Special abilities of a unit = allowed abilities
 CREATE TABLE squad_ability(
-	squad_id INT REFERENCES squads(squad_id)
+	unit_id INT REFERENCES squads(squad_id)
 	,ability_id INT REFERENCES abilities(ability_id)
 );
 -- Weapons available for a unit
@@ -80,7 +82,6 @@ CREATE TABLE unit_weapon(
 	unit_id INT REFERENCES units(unit_id)
 	,weapon_id INT REFERENCES weapons(weapon_id)
 );
-
 -- Units in a battel list
 CREATE TABLE unit_list(
 	unit_list_id serial primary key
@@ -88,13 +89,11 @@ CREATE TABLE unit_list(
 	,squad_id INT REFERENCES squads(squad_id)
 	,squad_size INTEGER
 );
-
 -- Weapon carry by a unit in a list
 CREATE TABLE unit_stuff(
 	unit_list_id INT REFERENCES unit_list(unit_list_id)
 	,weapon_id INT REFERENCES weapons(weapon_id)
 	,weapon_quantity INTEGER
-);
-
+); 
 
 

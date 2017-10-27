@@ -12,6 +12,7 @@ import m_weapon as weapon
 import m_unit as unit
 import m_unit_type as u_type
 import m_capacity as capacity
+import m_squad as squad
 
 def index():
     io.cls()
@@ -51,7 +52,7 @@ while run_status:
 	if l_unit_weapon.upper() == 'OUT':
 	    raw_input('Back to main menu ...')        
 	elif l_unit_weapon == '1':
-            unit.unit_main()
+            squad.squad_main()
         elif l_unit_weapon == '2':
             weapon.weapon_main()
 	elif l_unit_weapon == '3':

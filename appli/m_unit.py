@@ -119,8 +119,9 @@ def unit_capacity(unit_id):
 # step 1 creat unit
 # 2 add abilities
 # 3 add weapons
-def add_unit():
+def add_unit(squad_id):
     u_data={}
+    u_data['squad'] = squad_id
     for field in conf.get_conf('unit.conf')['unit_fields'].split(','):
 	if field.split(':')[0] == 'codex':
 	    codex.codex()
@@ -147,12 +148,14 @@ def unit_action():
         unit_id = raw_input('What is the unit id to display ? ')
         io.cls()
         print_units(io.get_unit_ids(unit_id))
+        #TODO add getter in weapons and capacities
         weapon.print_weapons(io.get_unit_weapon(unit_id))
         capa.print_capacities(io.get_unit_capacities(unit_id))
         raw_input('See what I see ...')
         return True
     elif action == '3':
-        add_unit()
+        squad.squad_display_full()
+        add_unit(raw_input('What is the squad id ? '))
         raw_input('Unit added mother fucker')
         return True
     elif action == '4':
