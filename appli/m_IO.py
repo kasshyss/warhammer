@@ -115,3 +115,10 @@ def get_squad_spe(name):
     return __pg_request(conf.get_conf('queries.conf')['get_squad_by_name'].replace('$name$', name))
 def get_squads():
     return __pg_request(conf.get_conf('queries.conf')['get_squads'])
+
+# List
+def get_lists():
+    return __pg_request(conf.get_conf('queries.conf')['get_lists'])
+def set_list(l_data):
+    __pg_request(conf.get_conf('queries.conf')['set_list'].replace('$name$', l_data['name']).replace('$cid$', l_data['codex']))
+    return __pg_request(conf.get_conf('queries.conf')['get_list_by_name'].replace('$name$', l_data['name']))
